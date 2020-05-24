@@ -23,7 +23,7 @@ $bucket = getenv('S3_BUCKET')?: die('No "S3_BUCKET" config var in found in env!'
         // FIXME: you should not use 'name' for the upload, since that's the original filename from the user's computer - generate a random filename that you then store in your database, or similar
         $upload = $s3->upload($bucket, $_FILES['userfile']['name'], fopen($_FILES['userfile']['tmp_name'], 'rb'), 'public-read');
         ?>
-        <p>Upload <a href="<?=htmlspecialchars($upload->get('ObjectURL'))?>">successful</a> :)</p>
+        <p>Upload <a href="<?=htmlspecialchars($upload->get('ObjectURL'))?>" target='_blank'>successful</a> :)</p>
             <?php } catch(Exception $e) { 
             echo $e;
     ?>
