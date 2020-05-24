@@ -24,9 +24,11 @@ $bucket = getenv('S3_BUCKET')?: die('No "S3_BUCKET" config var in found in env!'
         $upload = $s3->upload($bucket, $_FILES['userfile']['name'], fopen($_FILES['userfile']['tmp_name'], 'rb'), 'public-read');
         ?>
         <p>Upload <a href="<?=htmlspecialchars($upload->get('ObjectURL'))?>">successful</a> :)</p>
-            <?php } catch(Exception $e) { ?>
+            <?php } catch(Exception $e) { 
+            echo $e;
+    ?>
         <p>Upload error :(</p>
-        echo $e;
+        
 <?php } } ?>
         <h2>Upload a file</h2>
         <form enctype="multipart/form-data" action="<?=$_SERVER['PHP_SELF']?>" method="POST">
